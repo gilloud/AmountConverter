@@ -15,7 +15,7 @@ public class NumberToTextConverterTest {
 	@Test
 	public void parsingExceptionDecimals() throws Exception {
 		exceptionRule.expect(com.exercice.converters.exceptions.TooManyDecimals.class);
-		exceptionRule.expectMessage("too many decimals");
+		exceptionRule.expectMessage("existing decimals");
 		AmountToTextConverter nttDoException = new AmountToTextConverter(5.512);
 		assertEquals("five dot fifty-one", nttDoException.getTextualResult());
 	}
@@ -24,8 +24,8 @@ public class NumberToTextConverterTest {
 	public void parsingExceptionNegativeValue() throws Exception {
 		exceptionRule.expect(com.exercice.converters.exceptions.NegativeValue.class);
 		exceptionRule.expectMessage("negative value");
-		AmountToTextConverter nttNegative = new AmountToTextConverter(-5.5);
-		assertEquals("five dot fifty-one", nttNegative.getTextualResult());
+		AmountToTextConverter nttNegative = new AmountToTextConverter(-5.0);
+		assertEquals("five", nttNegative.getTextualResult());
 	}
 
 	@Test
@@ -75,18 +75,14 @@ public class NumberToTextConverterTest {
 		assertEquals("two thousand three hundred and forty-five",
 				nttTwoThousandthreeHundredFortyFive.getTextualResult());
 
-		AmountToTextConverter nttSixDotFive = new AmountToTextConverter(6.05);
-		assertEquals("six dot five", nttSixDotFive.getTextualResult());
 
-		AmountToTextConverter nttFiveDotFifty = new AmountToTextConverter(5.60);
-		assertEquals("five dot sixty", nttFiveDotFifty.getTextualResult());
 
 		AmountToTextConverter nttZero = new AmountToTextConverter(0.0);
 		assertEquals("zero", nttZero.getTextualResult());
 
 	}
 
-	@Test
+	/* Not in the v1. specifications.
 	public void testDecimalValues() throws Exception {
 		AmountToTextConverter nttFiveDotFiftya = new AmountToTextConverter(5.51);
 		assertEquals("five dot fifty-one", nttFiveDotFiftya.getTextualResult());
@@ -97,6 +93,11 @@ public class NumberToTextConverterTest {
 		AmountToTextConverter nttZeroDotOne = new AmountToTextConverter(0.01);
 		assertEquals("zero dot one", nttZeroDotOne.getTextualResult());
 
-	}
+		AmountToTextConverter nttSixDotFive = new AmountToTextConverter(6.05);
+		assertEquals("six dot five", nttSixDotFive.getTextualResult());
 
+		AmountToTextConverter nttFiveDotFifty = new AmountToTextConverter(5.60);
+		assertEquals("five dot sixty", nttFiveDotFifty.getTextualResult());
+	}
+	 */
 }

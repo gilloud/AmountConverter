@@ -25,16 +25,24 @@ public class AmountToTextConverter {
 		String[] arr = numberToConvert.toString().split("\\.");
 		_numberToConvertUnity = Integer.parseInt(arr[0]);
 		_numberToConvertDecimal = Integer.parseInt(arr[1]);
+		
+		if(_numberToConvertDecimal != 0)
+		{
+			throw new TooManyDecimals("This value is not an amount : existing decimals");
+
+		}
+		/* Not in the v1. specifications : The amount is only an integer.
 
 		// Hack to avoid Double simplification ( 5.50 => 5.5), and 5.05 => 5
 		// after split.
 		if (arr[1].length() == 1) {
 			_numberToConvertDecimal *= 10;
 		}
-
+		
 		if(arr[1].length() > 2) {
 			throw new TooManyDecimals("This value is not an amount : too many decimals");
 		}
+		*/
 	}
 
 	public String getTextualResult() throws TooHighValue {
