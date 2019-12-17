@@ -32,7 +32,7 @@ public class AmountToTextConverter {
 			_numberToConvertDecimal *= 10;
 		}
 
-		if (_numberToConvertDecimal >= 100) {
+		if(arr[1].length() > 2) {
 			throw new TooManyDecimals("This value is not an amount : too many decimals");
 		}
 	}
